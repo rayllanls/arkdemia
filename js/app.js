@@ -3,8 +3,14 @@
 // Pure JavaScript, no frameworks
 // ========================================
 
+// -------------------------------------------------------------
+// CONFIGURAÇÃO DAS PLANILHAS (Troque os IDs aqui)
+// -------------------------------------------------------------
 const SPREADSHEET_IDS = {
+    // ID da planilha do 2XKO (Ex: https://docs.google.com/spreadsheets/d/SEU_ID_AQUI/edit)
     "2xko": "1sPqEeBAqnVfFO-8y4W1n4kCi9SXbAst1VCT4Bqa3pfM",
+
+    // ID da planilha do Street Fighter 6
     sf6: "1sDmKRGTTUhuUhODJ7YmwPuVG9CX4VQmZr8iigeDCdOw",
 };
 
