@@ -195,6 +195,30 @@ body::before {
   box-shadow: 0 6px 25px hsla(300, 60%, 50%, 0.4);
 }
 
+.startgg-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, hsl(345, 75%, 45%), hsl(355, 65%, 50%), hsl(15, 80%, 55%));
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: fit-content;
+}
+
+.startgg-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px hsla(350, 60%, 50%, 0.4);
+}
+
 .hero-description {
   font-family: var(--font-body);
   font-size: 0.85rem;
@@ -819,6 +843,24 @@ body::before {
 
 .footer-ig:hover {
   color: hsl(330, 70%, 55%);
+  transform: translateY(-1px);
+}
+
+.footer-startgg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted-fg);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.footer-startgg:hover {
+  color: hsl(350, 70%, 55%);
   transform: translateY(-1px);
 }
 
