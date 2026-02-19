@@ -195,6 +195,16 @@ body::before {
   box-shadow: 0 6px 25px hsla(300, 60%, 50%, 0.4);
 }
 
+.hero-description {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--muted-fg);
+  margin-top: 0.75rem;
+  max-width: 380px;
+  letter-spacing: 0.02em;
+}
+
 /* ---- Divider ---- */
 .divider {
   height: 1px;
@@ -214,8 +224,8 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 180px;
-  height: 70px;
+  width: 220px;
+  height: 85px;
   padding: 0.5rem 1rem;
   border: 2px solid var(--border);
   border-radius: var(--radius);
@@ -230,9 +240,9 @@ body::before {
 }
 
 .game-btn-logo {
-  height: 40px;
+  height: 55px;
   width: auto;
-  max-width: 140px;
+  max-width: 180px;
   object-fit: contain;
   filter: grayscale(0.7) brightness(0.6);
   transition: filter 0.25s ease;
