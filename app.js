@@ -195,7 +195,7 @@ function renderLeaderboard(ranking, events) {
     container.innerHTML = "";
 
     const isGeral = !currentEventId;
-    $("points-label").textContent = isGeral ? "Total Acumulado" : "Pontos";
+    $("points-label").textContent = isGeral ? "Pontuação" : "Pontos";
 
     ranking.forEach((player) => {
         // Wrapper for row + detail
