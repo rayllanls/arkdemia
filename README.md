@@ -21,4 +21,4 @@ Este projeto foi desenvolvido por **Rayllan Leitão**.
 - **Repo**: [https://github.com/rayllanls/arkdemia](https://github.com/rayllanls/arkdemia)
 
 ---
-*Road to Battle Coliseum — Fortalecendo o cenário de jogos de luta no Amapá.*
+*Fortalecendo o cenário de jogos de luta no Amapá.*
