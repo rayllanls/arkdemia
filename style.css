@@ -579,7 +579,97 @@ body::before {
   letter-spacing: 0.1em;
 }
 
-/* ---- Photo Gallery ---- */
+/* ---- Player Detail Expand ---- */
+.lb-row {
+  cursor: pointer;
+}
+
+.lb-row .expand-arrow {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--muted-fg);
+  transition: transform 0.3s ease;
+}
+
+.lb-row.expanded .expand-arrow {
+  transform: rotate(180deg);
+}
+
+.player-detail {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+  margin: 0 0 0 0;
+}
+
+.player-detail.open {
+  max-height: 500px;
+  opacity: 1;
+  margin: -2px 0 6px 0;
+}
+
+.detail-table {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  border-top: 2px solid var(--accent);
+  padding: 0.75rem 1rem;
+}
+
+.detail-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.detail-table th {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted-fg);
+  text-align: left;
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-table th:last-child {
+  text-align: right;
+}
+
+.detail-table td {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--fg);
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid hsla(225, 15%, 20%, 0.4);
+}
+
+.detail-table td:last-child {
+  text-align: right;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.detail-table tr:last-child td {
+  border-bottom: none;
+}
+
+.detail-table .detail-total td {
+  border-top: 1px solid var(--border);
+  font-weight: 800;
+  color: var(--fg);
+  padding-top: 0.6rem;
+}
+
+.detail-table .detail-total td:last-child {
+  color: var(--accent);
+}
+
 .photo-gallery {
   margin-top: 2.5rem;
 }
@@ -637,7 +727,7 @@ body::before {
 /* ---- Stats Footer ---- */
 .stats-footer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 2.5rem;
 }

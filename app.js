@@ -180,13 +180,28 @@ function renderEventTabs(events) {
     });
 }
 
-function renderLeaderboard(ranking) {
+function getPlayerEtapaBreakdown(playerName, events) {
+    return events.map((event) => {
+        const player = event.players.find((p) => p.name === playerName);
+        return {
+            etapa: event.name,
+            points: player ? player.points : 0,
+        };
+    });
+}
+
+function renderLeaderboard(ranking, events) {
     const container = $("leaderboard");
     container.innerHTML = "";
 
-    $("points-label").textContent = currentEventId ? "Pontos" : "Total Acumulado";
+    const isGeral = !currentEventId;
+    $("points-label").textContent = isGeral ? "Total Acumulado" : "Pontos";
 
     ranking.forEach((player) => {
+        // Wrapper for row + detail
+        const wrapper = document.createElement("div");
+        wrapper.className = "lb-wrapper";
+
         const row = document.createElement("div");
         row.className = `lb-row${player.rank === 1 ? " rank-1" : ""}`;
 
@@ -197,13 +212,58 @@ function renderLeaderboard(ranking) {
       <div class="lb-left">
         <span class="rank-badge ${rankClass}">${player.rank}º</span>
         <span class="player-name">${escapeHtml(player.name)}</span>
+        ${isGeral ? '<span class="expand-arrow">▼</span>' : ''}
       </div>
       <div class="lb-right">
         <span class="points-value">${player.totalPoints}</span>
         <span class="points-unit">pts</span>
       </div>
     `;
-        container.appendChild(row);
+
+        wrapper.appendChild(row);
+
+        // Expandable detail (only in Geral)
+        if (isGeral && events && events.length > 0) {
+            const detail = document.createElement("div");
+            detail.className = "player-detail";
+
+            const breakdown = getPlayerEtapaBreakdown(player.name, events);
+            const total = breakdown.reduce((s, b) => s + b.points, 0);
+
+            let tableRows = breakdown
+                .filter((b) => b.points > 0)
+                .map((b) => `<tr><td>${escapeHtml(b.etapa)}</td><td>${b.points} pts</td></tr>`)
+                .join("");
+
+            detail.innerHTML = `
+        <div class="detail-table">
+          <table>
+            <thead><tr><th>Etapa</th><th>Pontos</th></tr></thead>
+            <tbody>
+              ${tableRows}
+              <tr class="detail-total"><td>Total</td><td>${total} pts</td></tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+
+            wrapper.appendChild(detail);
+
+            row.addEventListener("click", () => {
+                const isOpen = detail.classList.contains("open");
+                // Close all others
+                container.querySelectorAll(".player-detail.open").forEach((d) => {
+                    d.classList.remove("open");
+                    d.previousElementSibling.classList.remove("expanded");
+                });
+                if (!isOpen) {
+                    detail.classList.add("open");
+                    row.classList.add("expanded");
+                }
+            });
+        }
+
+        container.appendChild(wrapper);
     });
 
     $("leaderboard-section").style.display = "block";
@@ -258,7 +318,6 @@ function renderStatsFooter(events) {
     const leadersText =
         leaders.length > 2 ? `${leaders[0]} & +${leaders.length - 1}` : leaders.join(" & ");
 
-    $("stat-players").textContent = `${ranking.length} ATIVOS`;
     $("leader-label").textContent = leaders.length > 1 ? "Co-Líderes" : "Líder";
     $("stat-leader").textContent = leadersText || "--";
     $("stat-etapas").textContent = `${events.length} CONCLUÍDAS`;
@@ -308,7 +367,7 @@ async function loadAndRender() {
         renderEventTabs(events);
 
         const ranking = calculateRanking(events, currentEventId);
-        renderLeaderboard(ranking);
+        renderLeaderboard(ranking, events);
         renderPhotoGallery(events);
         renderStatsFooter(events);
     } catch (err) {
@@ -329,11 +388,9 @@ function selectEvent(eventId) {
     const events = eventsCache[currentGame] || [];
     renderEventTabs(events);
     const ranking = calculateRanking(events, currentEventId);
-    renderLeaderboard(ranking);
+    renderLeaderboard(ranking, events);
     renderPhotoGallery(events);
     renderStatsFooter(events);
-    // Update points label
-    $("points-label").textContent = currentEventId ? "Pontos" : "Total Acumulado";
 }
 
 // ---- Event Listeners ----
