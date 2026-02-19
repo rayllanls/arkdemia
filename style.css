@@ -889,8 +889,8 @@ body::before {
   }
 
   .game-btn {
-    padding: 0.6rem 1.5rem;
-    font-size: 1rem;
+    width: 160px;
+    height: 80px;
   }
 }
 
@@ -941,12 +941,12 @@ body::before {
   }
 
   .game-btn {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.95rem;
+    width: 140px;
+    height: 70px;
   }
 
   .game-btn-logo {
-    height: 28px;
+    height: 80px;
   }
 
   .gallery-grid {
