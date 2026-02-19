@@ -177,8 +177,8 @@ body::before {
   gap: 0.5rem;
   margin-top: 0.75rem;
   padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, hsl(330, 70%, 45%), hsl(270, 60%, 50%), hsl(30, 80%, 55%));
-  color: white;
+  background: var(--surface);
+  color: var(--fg);
   text-decoration: none;
   font-family: var(--font-display);
   font-size: 0.85rem;
@@ -186,13 +186,17 @@ body::before {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 50px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
   width: fit-content;
 }
 
 .instagram-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px hsla(300, 60%, 50%, 0.4);
+  border-color: hsl(330, 70%, 55%);
+  background: hsla(330, 70%, 55%, 0.1);
+  box-shadow: 0 4px 20px hsla(330, 70%, 55%, 0.2);
+  color: white;
 }
 
 .startgg-link {
@@ -201,8 +205,8 @@ body::before {
   gap: 0.5rem;
   margin-top: 0.75rem;
   padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, hsl(345, 75%, 45%), hsl(355, 65%, 50%), hsl(15, 80%, 55%));
-  color: white;
+  background: var(--surface);
+  color: var(--fg);
   text-decoration: none;
   font-family: var(--font-display);
   font-size: 0.85rem;
@@ -210,13 +214,17 @@ body::before {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 50px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
   width: fit-content;
 }
 
 .startgg-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px hsla(350, 60%, 50%, 0.4);
+  border-color: hsl(350, 70%, 55%);
+  background: hsla(350, 70%, 55%, 0.1);
+  box-shadow: 0 4px 20px hsla(350, 70%, 55%, 0.2);
+  color: white;
 }
 
 .hero-description {
@@ -843,6 +851,7 @@ body::before {
 
 .footer-ig:hover {
   color: hsl(330, 70%, 55%);
+  background: hsla(330, 70%, 55%, 0.1);
   transform: translateY(-1px);
 }
 
@@ -861,6 +870,7 @@ body::before {
 
 .footer-startgg:hover {
   color: hsl(350, 70%, 55%);
+  background: hsla(350, 70%, 55%, 0.1);
   transform: translateY(-1px);
 }
 
