@@ -298,7 +298,6 @@ function renderPhotoGallery(events) {
         card.className = "gallery-card";
         card.innerHTML = `
       <img src="${player.photoUrl}" alt="Foto de ${escapeHtml(player.name)}" loading="lazy" />
-      <div class="gallery-card-label">${escapeHtml(player.name)}</div>
     `;
         card.addEventListener("click", () => openLightbox(player.photoUrl));
         grid.appendChild(card);
