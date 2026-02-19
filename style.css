@@ -1,6 +1,6 @@
 /* ============================== */
-/*  Fight Stats Hub — ARKDEMIA    */
-/*  Gaming-Inspired Dark Theme    */
+/*  ARKDEMIA — Road to Battle     */
+/*  Coliseum — Gaming Dark Theme  */
 /* ============================== */
 
 /* ---- Reset & Root ---- */
@@ -13,7 +13,7 @@
 }
 
 :root {
-  /* Colors */
+  /* Base Colors */
   --bg: hsl(225, 25%, 8%);
   --bg2: hsl(225, 20%, 12%);
   --surface: hsl(225, 18%, 14%);
@@ -22,21 +22,22 @@
   --fg: hsl(0, 0%, 95%);
   --muted-fg: hsl(225, 10%, 55%);
 
-  /* Accent: neon yellow-green */
-  --accent: hsl(67, 100%, 50%);
-  --accent-dim: hsl(67, 80%, 35%);
-  --accent-glow: hsla(67, 100%, 50%, 0.25);
+  /* SF6: Red/Orange (default) */
+  --accent: hsl(10, 90%, 50%);
+  --accent-dim: hsl(10, 70%, 35%);
+  --accent-glow: hsla(10, 90%, 50%, 0.25);
+  --accent-bright: hsl(15, 100%, 55%);
 
-  /* Cyan for SF6 */
-  --cyan: hsl(185, 100%, 45%);
-  --cyan-dim: hsl(185, 70%, 30%);
-  --cyan-glow: hsla(185, 100%, 45%, 0.25);
+  /* 2XKO: Green */
+  --green: hsl(80, 85%, 50%);
+  --green-dim: hsl(80, 60%, 30%);
+  --green-glow: hsla(80, 85%, 50%, 0.25);
 
   /* Purple for logo glow */
   --purple: hsl(270, 60%, 55%);
   --purple-glow: hsla(270, 60%, 55%, 0.4);
 
-  /* Gold / Silver / Bronze */
+  /* Rank Colors */
   --gold: hsl(45, 100%, 55%);
   --silver: hsl(210, 15%, 70%);
   --bronze: hsl(25, 60%, 50%);
@@ -45,6 +46,21 @@
   --font-display: 'Oswald', sans-serif;
   --font-body: 'Inter', sans-serif;
   --radius: 8px;
+}
+
+/* ---- Game themes ---- */
+body[data-game="sf6"] {
+  --accent: hsl(10, 90%, 50%);
+  --accent-dim: hsl(10, 70%, 35%);
+  --accent-glow: hsla(10, 90%, 50%, 0.25);
+  --accent-bright: hsl(15, 100%, 55%);
+}
+
+body[data-game="2xko"] {
+  --accent: hsl(80, 85%, 50%);
+  --accent-dim: hsl(80, 60%, 30%);
+  --accent-glow: hsla(80, 85%, 50%, 0.25);
+  --accent-bright: hsl(80, 100%, 55%);
 }
 
 body {
@@ -56,7 +72,7 @@ body {
   position: relative;
 }
 
-/* Background grid pattern for gaming feel */
+/* Background grid */
 body::before {
   content: '';
   position: fixed;
@@ -90,7 +106,7 @@ body::before {
   z-index: 1;
 }
 
-/* ---- Hero: Logo + Event Name ---- */
+/* ---- Hero ---- */
 .hero {
   display: flex;
   align-items: center;
@@ -186,23 +202,19 @@ body::before {
   margin-bottom: 2rem;
 }
 
-body[data-game="sf6"] .divider {
-  background: linear-gradient(90deg, transparent, var(--border), var(--cyan-dim), var(--border), transparent);
-}
-
 /* ---- Game Selector ---- */
 .game-selector {
   display: flex;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-bottom: 2.5rem;
 }
 
 .game-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 2rem;
+  gap: 0.75rem;
+  padding: 0.7rem 2rem;
   border: 2px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
@@ -213,7 +225,7 @@ body[data-game="sf6"] .divider {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .game-btn:hover {
@@ -222,17 +234,36 @@ body[data-game="sf6"] .divider {
   border-color: var(--muted-fg);
 }
 
-.game-btn.active {
-  background: var(--accent);
-  color: var(--bg);
-  border-color: var(--accent);
-  box-shadow: 0 0 25px var(--accent-glow), inset 0 1px 0 hsla(0, 0%, 100%, 0.2);
+.game-btn-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(0.6) brightness(0.7);
+  transition: filter 0.25s ease;
 }
 
-body[data-game="sf6"] .game-btn.active {
-  background: var(--cyan);
-  border-color: var(--cyan);
-  box-shadow: 0 0 25px var(--cyan-glow), inset 0 1px 0 hsla(0, 0%, 100%, 0.2);
+.game-btn:hover .game-btn-logo {
+  filter: grayscale(0.2) brightness(0.9);
+}
+
+.game-btn.active .game-btn-logo {
+  filter: none;
+}
+
+/* SF6 active: red */
+#btn-sf6.active {
+  background: hsl(10, 90%, 50%);
+  color: white;
+  border-color: hsl(10, 90%, 50%);
+  box-shadow: 0 0 25px hsla(10, 90%, 50%, 0.35), inset 0 1px 0 hsla(0, 0%, 100%, 0.2);
+}
+
+/* 2XKO active: green */
+#btn-2xko.active {
+  background: hsl(80, 85%, 45%);
+  color: hsl(80, 40%, 10%);
+  border-color: hsl(80, 85%, 45%);
+  box-shadow: 0 0 25px hsla(80, 85%, 50%, 0.35), inset 0 1px 0 hsla(0, 0%, 100%, 0.2);
 }
 
 /* ---- Header (Circuit Info) ---- */
@@ -271,11 +302,6 @@ body[data-game="sf6"] .game-btn.active {
   text-shadow: 0 0 25px var(--accent-glow);
 }
 
-body[data-game="sf6"] .title-circuit {
-  color: var(--cyan);
-  text-shadow: 0 0 25px var(--cyan-glow);
-}
-
 /* ---- Header Meta ---- */
 .header-meta {
   display: flex;
@@ -312,12 +338,6 @@ body[data-game="sf6"] .title-circuit {
   box-shadow: 0 0 12px var(--accent-glow);
 }
 
-body[data-game="sf6"] .etapa-badge {
-  color: var(--cyan);
-  border-color: var(--cyan);
-  box-shadow: 0 0 12px var(--cyan-glow);
-}
-
 /* ---- Event Tabs ---- */
 .event-tabs {
   display: flex;
@@ -352,12 +372,7 @@ body[data-game="sf6"] .etapa-badge {
   color: var(--bg);
   border-color: var(--accent);
   box-shadow: 0 0 15px var(--accent-glow);
-}
-
-body[data-game="sf6"] .tab-btn.active {
-  background: var(--cyan);
-  border-color: var(--cyan);
-  box-shadow: 0 0 15px var(--cyan-glow);
+  font-weight: 700;
 }
 
 /* ---- Loading ---- */
@@ -381,10 +396,6 @@ body[data-game="sf6"] .tab-btn.active {
   border-top-color: var(--accent);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
-}
-
-body[data-game="sf6"] .spinner {
-  border-top-color: var(--cyan);
 }
 
 @keyframes spin {
@@ -528,7 +539,6 @@ body[data-game="sf6"] .spinner {
   font-family: var(--font-display);
   font-size: 0.85rem;
   font-weight: 800;
-  letter-spacing: 0;
   flex-shrink: 0;
 }
 
@@ -577,10 +587,6 @@ body[data-game="sf6"] .spinner {
   color: var(--accent);
 }
 
-body[data-game="sf6"] .points-value {
-  color: var(--cyan);
-}
-
 .points-unit {
   font-family: var(--font-display);
   font-size: 0.7rem;
@@ -627,11 +633,6 @@ body[data-game="sf6"] .points-value {
   box-shadow: 0 8px 30px hsla(0, 0%, 0%, 0.4), 0 0 20px var(--accent-glow);
 }
 
-body[data-game="sf6"] .gallery-card:hover {
-  border-color: var(--cyan);
-  box-shadow: 0 8px 30px hsla(0, 0%, 0%, 0.4), 0 0 20px var(--cyan-glow);
-}
-
 .gallery-card img {
   width: 100%;
   height: 200px;
@@ -673,10 +674,6 @@ body[data-game="sf6"] .gallery-card:hover {
   transform: translateY(-2px);
 }
 
-body[data-game="sf6"] .stat-card:hover {
-  border-color: var(--cyan-dim);
-}
-
 .stat-icon {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
@@ -706,19 +703,9 @@ body[data-game="sf6"] .stat-card:hover {
   text-shadow: 0 0 15px var(--accent-glow);
 }
 
-body[data-game="sf6"] .stat-leader {
-  color: var(--cyan);
-  text-shadow: 0 0 15px var(--cyan-glow);
-}
-
 .stat-etapas {
   color: var(--accent);
   text-shadow: 0 0 15px var(--accent-glow);
-}
-
-body[data-game="sf6"] .stat-etapas {
-  color: var(--cyan);
-  text-shadow: 0 0 15px var(--cyan-glow);
 }
 
 /* ---- Site Footer ---- */
@@ -872,6 +859,10 @@ body[data-game="sf6"] .stat-etapas {
   .game-btn {
     padding: 0.6rem 1.2rem;
     font-size: 0.95rem;
+  }
+
+  .game-btn-logo {
+    height: 28px;
   }
 
   .gallery-grid {

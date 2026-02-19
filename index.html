@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ARKDEMIA — Ranking SF6 & 2XKO</title>
+  <title>ARKDEMIA — Road to Battle Coliseum</title>
   <meta name="description"
-    content="Ranking e resultados do campeonato ARKDEMIA de SF6 e 2XKO. Acompanhe as etapas e pontuações dos lutadores." />
+    content="Ranking e resultados do campeonato ARKDEMIA — Road to Battle Coliseum. SF6 e 2XKO." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -15,18 +15,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
-  <!-- Scanline overlay for retro effect -->
+<body data-game="sf6">
+  <!-- Scanline overlay -->
   <div class="scanlines"></div>
 
   <div id="app" class="container">
 
     <!-- Hero: Logo + Event Name -->
     <div class="hero">
-      <img src="logo.png" alt="ARKDEMIA — SF6 | 2XKO Fighting Game Event" class="hero-logo" />
+      <img src="logo.png" alt="ARKDEMIA — Fighting Game Event" class="hero-logo" />
       <div class="hero-text">
         <h1 class="hero-title">ARKDEMIA</h1>
-        <p class="hero-subtitle">SF6 | 2XKO — FIGHTING GAME EVENT</p>
+        <p class="hero-subtitle">ROAD TO BATTLE COLISEUM</p>
         <a href="https://www.instagram.com/arkdemia" target="_blank" rel="noopener noreferrer" class="instagram-link">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path
@@ -40,35 +40,28 @@
     <!-- Divider -->
     <div class="divider"></div>
 
-    <!-- Game Selector -->
+    <!-- Game Selector with logos -->
     <div id="game-selector" class="game-selector">
-      <button class="game-btn active" data-game="2xko" id="btn-2xko">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-        </svg>
-        2XKO
+      <button class="game-btn active" data-game="sf6" id="btn-sf6">
+        <img src="logo_sf6.png" alt="Street Fighter 6" class="game-btn-logo" />
+        <span>SF6</span>
       </button>
-      <button class="game-btn" data-game="sf6" id="btn-sf6">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path
-            d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
-        </svg>
-        SF6
+      <button class="game-btn" data-game="2xko" id="btn-2xko">
+        <img src="logo_2xko.png" alt="2XKO" class="game-btn-logo" />
+        <span>2XKO</span>
       </button>
     </div>
 
     <!-- Circuit Header -->
     <header id="header" class="header">
       <h2 class="header-title">
-        <span class="title-game" id="title-game">2XKO</span>
+        <span class="title-game" id="title-game">SF6</span>
         <span class="title-circuit" id="title-circuit">ARKDEMIA</span>
       </h2>
       <div class="header-meta">
         <p class="subtitle" id="subtitle">
-          <span class="subtitle-icon" id="subtitle-icon">⚡</span>
-          TAG-TEAM CIRCUIT 25/26
+          <span class="subtitle-icon" id="subtitle-icon">🔥</span>
+          ROAD TO BATTLE COLISEUM
         </p>
         <span class="etapa-badge" id="etapa-badge">Etapa --</span>
       </div>
@@ -92,7 +85,6 @@
 
     <!-- Leaderboard -->
     <div id="leaderboard-section" style="display:none;">
-      <!-- Column Headers -->
       <div class="column-headers">
         <div class="col-left">
           <span class="col-label col-pos">Pos</span>
@@ -100,7 +92,6 @@
         </div>
         <span class="col-label" id="points-label">Total Acumulado</span>
       </div>
-
       <div id="leaderboard" class="leaderboard"></div>
     </div>
 
@@ -140,7 +131,7 @@
         </svg>
         @arkdemia
       </a>
-      <p class="footer-text">ARKDEMIA © 2025 — Fighting Game Event</p>
+      <p class="footer-text">ARKDEMIA © 2025 — Road to Battle Coliseum</p>
     </footer>
 
   </div>

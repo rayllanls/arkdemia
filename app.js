@@ -9,12 +9,12 @@ const SPREADSHEET_IDS = {
 };
 
 const GAME_META = {
-    "2xko": { title: "2XKO", subtitle: "TAG-TEAM CIRCUIT 25/26", icon: "⚡" },
-    sf6: { title: "SF6", subtitle: "WORLD WARRIOR CIRCUIT 25/26", icon: "🔥" },
+    sf6: { title: "SF6", subtitle: "ROAD TO BATTLE COLISEUM", icon: "🔥" },
+    "2xko": { title: "2XKO", subtitle: "ROAD TO BATTLE COLISEUM", icon: "⚡" },
 };
 
 // ---- State ----
-let currentGame = "2xko";
+let currentGame = "sf6";
 let currentEventId = null; // null = "Geral"
 let eventsCache = {}; // { "2xko": [...], "sf6": [...] }
 
