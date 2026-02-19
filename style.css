@@ -213,57 +213,51 @@ body::before {
 .game-btn {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.7rem 2rem;
+  justify-content: center;
+  width: 180px;
+  height: 70px;
+  padding: 0.5rem 1rem;
   border: 2px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
-  color: var(--muted-fg);
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .game-btn:hover {
   background: var(--surface-hover);
-  color: var(--fg);
   border-color: var(--muted-fg);
 }
 
 .game-btn-logo {
-  height: 36px;
+  height: 40px;
   width: auto;
+  max-width: 140px;
   object-fit: contain;
-  filter: grayscale(0.6) brightness(0.7);
+  filter: grayscale(0.7) brightness(0.6);
   transition: filter 0.25s ease;
 }
 
 .game-btn:hover .game-btn-logo {
-  filter: grayscale(0.2) brightness(0.9);
+  filter: grayscale(0.3) brightness(0.8);
 }
 
 .game-btn.active .game-btn-logo {
   filter: none;
 }
 
-/* SF6 active: red */
+/* SF6 active: subtle warm */
 #btn-sf6.active {
-  background: hsl(10, 90%, 50%);
-  color: white;
-  border-color: hsl(10, 90%, 50%);
-  box-shadow: 0 0 25px hsla(10, 90%, 50%, 0.35), inset 0 1px 0 hsla(0, 0%, 100%, 0.2);
+  background: hsla(10, 70%, 50%, 0.12);
+  border-color: hsla(10, 80%, 55%, 0.5);
+  box-shadow: 0 0 20px hsla(10, 80%, 50%, 0.1);
 }
 
-/* 2XKO active: green */
+/* 2XKO active: subtle green */
 #btn-2xko.active {
-  background: hsl(80, 85%, 45%);
-  color: hsl(80, 40%, 10%);
-  border-color: hsl(80, 85%, 45%);
-  box-shadow: 0 0 25px hsla(80, 85%, 50%, 0.35), inset 0 1px 0 hsla(0, 0%, 100%, 0.2);
+  background: hsla(80, 70%, 50%, 0.12);
+  border-color: hsla(80, 80%, 50%, 0.5);
+  box-shadow: 0 0 20px hsla(80, 80%, 50%, 0.1);
 }
 
 /* ---- Header (Circuit Info) ---- */
@@ -325,18 +319,7 @@ body::before {
   font-size: 1rem;
 }
 
-.etapa-badge {
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 0.25rem 0.75rem;
-  border-radius: 4px;
-  box-shadow: 0 0 12px var(--accent-glow);
-}
+
 
 /* ---- Event Tabs ---- */
 .event-tabs {

@@ -157,8 +157,7 @@ function renderGameSelector() {
 function renderHeader(events) {
     const meta = GAME_META[currentGame];
     $("title-game").textContent = meta.title;
-    $("subtitle").innerHTML = `<span class="subtitle-icon">${meta.icon}</span> ${meta.subtitle}`;
-    $("etapa-badge").textContent = `Etapa ${String(events.length).padStart(2, "0")}`;
+    $("subtitle").textContent = meta.subtitle;
 }
 
 function renderEventTabs(events) {
