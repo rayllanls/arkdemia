@@ -78,9 +78,17 @@ function parsePlayersFromRows(rows) {
         .filter((p) => p.name);
 }
 
+function isValidEtapaSheet(rows) {
+    // ETAPA sheets have "Jogador" in the header row (column B)
+    // BD sheet has "Colocação" and "Pontos" only (no "Jogador")
+    if (!rows || rows.length < 2) return false;
+    const header = rows[0].map((h) => h.toLowerCase());
+    return header.some((h) => h.includes("jogador"));
+}
+
 async function fetchAllEvents(game) {
     // Check session cache
-    const cacheKey = `fight-stats-${game}`;
+    const cacheKey = `fight-stats-v2-${game}`;
     try {
         const cached = sessionStorage.getItem(cacheKey);
         if (cached) {
@@ -93,9 +101,9 @@ async function fetchAllEvents(game) {
     const events = [];
     let num = 1;
 
-    while (num <= 20) {
+    while (num <= 50) {
         const rows = await fetchSheetCSV(spreadsheetId, `ETAPA${num}`);
-        if (!rows) break;
+        if (!rows || !isValidEtapaSheet(rows)) break;
         events.push({
             id: `${game}-etapa-${num}`,
             name: `Etapa ${String(num).padStart(2, "0")}`,
