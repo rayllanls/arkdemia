@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <title>ARKDEMIA — Road to Battle Coliseum</title>
+  <meta name="description"
+    content="Ranking e resultados do campeonato ARKDEMIA — Road to Battle Coliseum. SF6 e 2XKO." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body data-game="sf6">
+
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close">✕</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <nav>
+    <div class="nav-logo">ARK<span>DEMIA</span></div>
+    <div class="nav-center">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#ranking" onclick="toggleMenu()">Ranking</a></li>
+        <li><a href="#fotos" onclick="toggleMenu()">Fotos</a></li>
+        <li><a href="#sobre" onclick="toggleMenu()">Sobre</a></li>
+      </ul>
+    </div>
+    <div class="nav-social">
+      <a href="https://www.instagram.com/arkdemia" target="_blank" class="desktop-only">Instagram</a>
+      <a href="https://www.start.gg/tournament/arkdemia-2026/events" target="_blank">Start.gg</a>
+      <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-badge">◈ Road to Battle Coliseum · 2026</div>
+    <h1 class="hero-title">
+      <span class="outline">ARK</span>
+      <span class="filled" data-text="DEMIA">DEMIA</span>
+    </h1>
+    <p class="hero-sub" id="subtitle">Fighting Game Community · Amapá</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">Promovendo o Esports e a cultura FGC no Amapá.<br>Eventos, seletivas e incentivo a novos
+      players.</p>
+
+    <div id="game-selector" class="hero-game-picks">
+      <div class="game-pick sf6 active" id="btn-sf6">
+        <div class="game-pick-icon sf6-icon">SF6</div>
+        <div>
+          <span class="game-pick-name" id="title-game-sf6">Street Fighter 6</span>
+          <span class="game-pick-sub">Capcom · 2023</span>
+        </div>
+      </div>
+      <div class="game-pick xko" id="btn-2xko">
+        <div class="game-pick-icon xko-icon">2XKO</div>
+        <div>
+          <span class="game-pick-name" id="title-game-2xko">2XKO</span>
+          <span class="game-pick-sub">Riot Games · 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="sobre">
+    <div class="stats-row" id="stats-footer" style="display:none;">
+      <div class="stat-box">
+        <div class="stat-val" id="stat-leader">--</div>
+        <div class="stat-label" id="leader-label">Líder</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="stat-etapas">--</div>
+        <div class="stat-label">Etapas</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">2</div>
+        <div class="stat-label">Jogos</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val"><span>#</span>AP</div>
+        <div class="stat-label">Cenário Local</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Error/Loading Messages -->
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Carregando dados...</p>
+  </div>
+  <div id="error" class="error-msg" style="display:none;">
+    <p>⚠ Erro ao carregar dados</p>
+  </div>
+
+  <!-- Leaderboard Section -->
+  <section class="section reveal" id="ranking">
+    <div class="section-header">
+      <div>
+        <div class="section-label">◈ Temporada 2026</div>
+        <h2 class="section-title">Ranking</h2>
+        <!-- Hidden elements to satisfy existing app.js DOM updates without affecting the UI -->
+        <span id="title-game" style="display:none;"></span>
+      </div>
+      <div class="section-meta" id="ranking-updated">Atualizando...</div>
+    </div>
+
+    <div id="leaderboard-section">
+      <div class="panel active">
+        <div class="panel-inner">
+          <div class="etapa-tabs" id="event-tabs">
+            <button class="etapa-tab active" data-event="geral" id="tab-geral">Geral</button>
+          </div>
+
+          <div class="lb-wrap">
+            <div class="lb-head">
+              <div>#</div>
+              <div>Jogador</div>
+              <div id="points-label">Pontuação</div>
+              <div>Pts</div>
+            </div>
+            <div id="leaderboard" class="leaderboard"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery -->
+  <section class="section reveal" id="photos" style="display:none;">
+    <div class="section-header" id="photo-gallery">
+      <div>
+        <div class="section-label">◈ Galeria</div>
+        <h2 class="section-title" id="gallery-title-text">Fotos</h2>
+      </div>
+      <a href="https://www.instagram.com/arkdemia" target="_blank" class="section-meta">@arkdemia ↗</a>
+    </div>
+    <div class="photos-grid" id="gallery-grid">
+    </div>
+  </section>
+
+  <footer class="reveal">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-name">ARK<span>DEMIA</span></div>
+        <p>Fortalecendo o cenário de jogos de luta no Amapá.<br>Road to Battle Coliseum 2026.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navegação</div>
+        <ul class="footer-links">
+          <li><a href="#ranking">Ranking</a></li>
+          <li><a href="#fotos">Fotos</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Social</div>
+        <ul class="footer-links">
+          <li><a href="https://www.instagram.com/arkdemia" target="_blank">Instagram @arkdemia</a></li>
+          <li><a href="https://www.start.gg/tournament/arkdemia-2026/events" target="_blank">Start.gg</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>ARKDEMIA © 2026 — FGC Amapá</span>
+      <span>Dev by <a href="https://github.com/rayllanls" target="_blank">rayllanls</a></span>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-links').classList.toggle('active');
+    }
+
+    // Intersect Observer para animar seções ao scrollar
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
