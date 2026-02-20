@@ -209,7 +209,7 @@ function renderLeaderboard(ranking, events) {
         wrapper.className = "lb-wrapper";
 
         const row = document.createElement("div");
-        row.className = `lb-row${player.rank === 1 ? " rank-1" : ""}`;
+        row.className = `lb-row${player.rank <= 3 ? ` rank-${player.rank}` : ""}`;
 
         const rankClass =
             player.rank === 1 ? "r1" : player.rank === 2 ? "r2" : player.rank === 3 ? "r3" : "r-default";
@@ -280,7 +280,39 @@ function renderPhotoGallery(events) {
     const grid = $("gallery-grid");
 
     if (!currentEventId) {
-        gallery.style.display = "none";
+        // Geral: collect photos from all events and deduplicate by player name
+        let allPhotos = [];
+        const seenPlayers = new Set();
+
+        events.forEach(event => {
+            const photosPlayers = event.players.filter(p => p.photoUrl);
+            photosPlayers.forEach(player => {
+                if (!seenPlayers.has(player.name)) {
+                    seenPlayers.add(player.name);
+                    allPhotos.push(player);
+                }
+            });
+        });
+
+        if (allPhotos.length === 0) {
+            gallery.style.display = "none";
+            return;
+        }
+
+        $("gallery-title-text").textContent = "Fotos - Geral";
+        grid.innerHTML = "";
+
+        allPhotos.forEach((player) => {
+            const card = document.createElement("button");
+            card.className = "gallery-card";
+            card.innerHTML = `
+          <img src="${player.photoUrl}" alt="Foto de ${escapeHtml(player.name)}" loading="lazy" />
+        `;
+            card.addEventListener("click", () => openLightbox(player.photoUrl));
+            grid.appendChild(card);
+        });
+
+        gallery.style.display = "block";
         return;
     }
 
