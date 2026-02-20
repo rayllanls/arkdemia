@@ -604,6 +604,36 @@ body::before {
   flex-shrink: 0;
 }
 
+/* Load More Button Wrapper */
+.load-more-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.load-more-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.6rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.load-more-btn:hover {
+  background: var(--surface-hover);
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
 .r1 {
   background: linear-gradient(135deg, var(--gold), hsl(40, 85%, 45%));
   color: hsl(40, 40%, 10%);

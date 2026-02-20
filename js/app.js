@@ -196,14 +196,17 @@ function getPlayerEtapaBreakdown(playerName, events) {
     });
 }
 
-function renderLeaderboard(ranking, events) {
+function renderLeaderboard(ranking, events, limit = 10) {
     const container = $("leaderboard");
     container.innerHTML = "";
 
     const isGeral = !currentEventId;
     $("points-label").textContent = isGeral ? "Pontuação" : "Pontos";
 
-    ranking.forEach((player) => {
+    // Slice the ranking if a limit is provided
+    const displayRanking = limit ? ranking.slice(0, limit) : ranking;
+
+    displayRanking.forEach((player) => {
         // Wrapper for row + detail
         const wrapper = document.createElement("div");
         wrapper.className = "lb-wrapper";
@@ -272,25 +275,40 @@ function renderLeaderboard(ranking, events) {
         container.appendChild(wrapper);
     });
 
+    // Expand/Collapse logic
+    if (ranking.length > 10) {
+        const btnWrapper = document.createElement("div");
+        btnWrapper.className = "load-more-wrapper";
+        const toggleBtn = document.createElement("button");
+        toggleBtn.className = "load-more-btn";
+
+        if (limit) {
+            toggleBtn.textContent = "Ver Todos os Jogadores";
+            toggleBtn.addEventListener("click", () => renderLeaderboard(ranking, events, null));
+        } else {
+            toggleBtn.textContent = "Mostrar menos";
+            toggleBtn.addEventListener("click", () => renderLeaderboard(ranking, events, 10));
+        }
+
+        btnWrapper.appendChild(toggleBtn);
+        container.appendChild(btnWrapper);
+    }
+
     $("leaderboard-section").style.display = "block";
 }
 
-function renderPhotoGallery(events) {
+function renderPhotoGallery(events, limit = 8) {
     const gallery = $("photo-gallery");
     const grid = $("gallery-grid");
 
     if (!currentEventId) {
-        // Geral: collect photos from all events and deduplicate by player name
+        // Geral: collect photos from all events
         let allPhotos = [];
-        const seenPlayers = new Set();
 
         events.forEach(event => {
             const photosPlayers = event.players.filter(p => p.photoUrl);
             photosPlayers.forEach(player => {
-                if (!seenPlayers.has(player.name)) {
-                    seenPlayers.add(player.name);
-                    allPhotos.push(player);
-                }
+                allPhotos.push(player);
             });
         });
 
@@ -302,7 +320,9 @@ function renderPhotoGallery(events) {
         $("gallery-title-text").textContent = "Fotos - Geral";
         grid.innerHTML = "";
 
-        allPhotos.forEach((player) => {
+        const displayPhotos = limit ? allPhotos.slice(0, limit) : allPhotos;
+
+        displayPhotos.forEach((player) => {
             const card = document.createElement("button");
             card.className = "gallery-card";
             card.innerHTML = `
@@ -311,6 +331,28 @@ function renderPhotoGallery(events) {
             card.addEventListener("click", () => openLightbox(player.photoUrl));
             grid.appendChild(card);
         });
+
+        // Remove existing load more button if present
+        const existingWrap = gallery.querySelector('.load-more-wrapper');
+        if (existingWrap) existingWrap.remove();
+
+        if (allPhotos.length > 8) {
+            const btnWrapper = document.createElement("div");
+            btnWrapper.className = "load-more-wrapper";
+            const toggleBtn = document.createElement("button");
+            toggleBtn.className = "load-more-btn";
+
+            if (limit) {
+                toggleBtn.textContent = "Ver Todas as Fotos";
+                toggleBtn.addEventListener("click", () => renderPhotoGallery(events, null));
+            } else {
+                toggleBtn.textContent = "Mostrar menos";
+                toggleBtn.addEventListener("click", () => renderPhotoGallery(events, 8));
+            }
+
+            btnWrapper.appendChild(toggleBtn);
+            grid.parentElement.appendChild(btnWrapper);
+        }
 
         gallery.style.display = "block";
         return;
@@ -331,7 +373,9 @@ function renderPhotoGallery(events) {
     $("gallery-title-text").textContent = `Fotos da ${event.sheetName}`;
     grid.innerHTML = "";
 
-    photosPlayers.forEach((player) => {
+    const displayPhotos = limit ? photosPlayers.slice(0, limit) : photosPlayers;
+
+    displayPhotos.forEach((player) => {
         const card = document.createElement("button");
         card.className = "gallery-card";
         card.innerHTML = `
@@ -340,6 +384,27 @@ function renderPhotoGallery(events) {
         card.addEventListener("click", () => openLightbox(player.photoUrl));
         grid.appendChild(card);
     });
+
+    const existingWrap = gallery.querySelector('.load-more-wrapper');
+    if (existingWrap) existingWrap.remove();
+
+    if (photosPlayers.length > 8) {
+        const btnWrapper = document.createElement("div");
+        btnWrapper.className = "load-more-wrapper";
+        const toggleBtn = document.createElement("button");
+        toggleBtn.className = "load-more-btn";
+
+        if (limit) {
+            toggleBtn.textContent = "Ver Todas as Fotos";
+            toggleBtn.addEventListener("click", () => renderPhotoGallery(events, null));
+        } else {
+            toggleBtn.textContent = "Mostrar menos";
+            toggleBtn.addEventListener("click", () => renderPhotoGallery(events, 8));
+        }
+
+        btnWrapper.appendChild(toggleBtn);
+        grid.parentElement.appendChild(btnWrapper);
+    }
 
     gallery.style.display = "block";
 }
